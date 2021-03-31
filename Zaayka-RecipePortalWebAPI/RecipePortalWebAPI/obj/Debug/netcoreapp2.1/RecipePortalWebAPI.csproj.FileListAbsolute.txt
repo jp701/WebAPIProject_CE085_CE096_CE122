@@ -1,0 +1,14 @@
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\bin\Debug\netcoreapp2.1\RecipePortalWebAPI.deps.json
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\bin\Debug\netcoreapp2.1\RecipePortalWebAPI.runtimeconfig.json
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\bin\Debug\netcoreapp2.1\RecipePortalWebAPI.runtimeconfig.dev.json
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\bin\Debug\netcoreapp2.1\RecipePortalWebAPI.dll
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\bin\Debug\netcoreapp2.1\RecipePortalWebAPI.pdb
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.csprojAssemblyReference.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.csproj.CoreCompileInputs.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.RazorAssemblyInfo.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.RazorAssemblyInfo.cs
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.AssemblyInfoInputs.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.AssemblyInfo.cs
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.RazorTargetAssemblyInfo.cache
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.dll
+C:\Users\Jinal\source\repos\Zaayka-RecipePortalWebAPI\RecipePortalWebAPI\obj\Debug\netcoreapp2.1\RecipePortalWebAPI.pdb
