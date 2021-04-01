@@ -9,7 +9,7 @@ using RecipePortalWebAPI.Models;
 
 namespace RecipePortalWebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -45,6 +45,22 @@ namespace RecipePortalWebAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error while adding User: "+ex.Message);
             }
             return Ok(msg);
+        }
+
+        [Route("login")]
+        [HttpPost]
+        public IActionResult Login([FromBody] User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var get_user = _accountRepository.Login(user);
+            if(get_user == null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Invalid Username or Password");
+            }
+            return Ok(get_user);
         }
 
     }

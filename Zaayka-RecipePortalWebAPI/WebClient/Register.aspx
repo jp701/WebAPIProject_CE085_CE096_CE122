@@ -49,7 +49,7 @@
             <br />
             <div class="input-group">
                 <asp:Label ID="Label3" style="font-size:1.2vw;" runat="server" Text="Password:" required></asp:Label>
-                <asp:TextBox ID="TextBox3" type="password"  class="form-control" style="font-size:1.2vw;"  runat="server"></asp:TextBox>
+                <asp:TextBox ID="TextBox3" type="password"  class="form-control" style="font-size:1.2vw;"  runat="server" minlength="8" maxlength="12" title="Password should contain at least 8 and at max 12 characters"></asp:TextBox>
                    
             </div>
             

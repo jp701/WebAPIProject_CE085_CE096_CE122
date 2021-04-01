@@ -15,6 +15,12 @@ namespace RecipePortalWebAPI.Data
             this.context = context;
         }
 
+        public User Login(User user)
+        {
+            var old_user = context.Users.Where(u=> u.email==user.email && u.password == user.password).FirstOrDefault();
+            return old_user;
+        }
+
         public string Register(User user)
         {
             var status = context.Users.Any(u=> u.email==user.email);

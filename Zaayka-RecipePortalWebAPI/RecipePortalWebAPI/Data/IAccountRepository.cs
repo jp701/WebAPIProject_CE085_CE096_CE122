@@ -9,5 +9,7 @@ namespace RecipePortalWebAPI.Data
     public interface IAccountRepository
     {
         string Register(User user);
+
+        User Login(User user);
     }
 }
