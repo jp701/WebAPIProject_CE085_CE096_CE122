@@ -22,8 +22,10 @@ namespace WebClient
             
             var recipe_resp = await client.GetAsync("https://localhost:44366/api/recipe/getallrecipes");
             if (!recipe_resp.IsSuccessStatusCode)
-                Response.Write("<h4>No Recipes available..!!</h4>");
-
+            {
+                Label1.Text= "<h4>No Recipes available..!!</h4>";
+                Label1.ForeColor = System.Drawing.Color.Red;
+            }
             var data = await recipe_resp.Content.ReadAsStringAsync();
             Recipe[] recipeList = JsonConvert.DeserializeObject<Recipe[]>(data);
 

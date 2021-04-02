@@ -120,9 +120,9 @@ namespace RecipePortalWebAPI.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError, response);
         }
 
-        [Route("addlike/{id}")]
-        [HttpGet]
-        public IActionResult AddLike(int id)
+        [Route("addlike")]
+        [HttpPost]
+        public IActionResult AddLike([FromBody] int id)
         {
             try
             {
@@ -141,9 +141,9 @@ namespace RecipePortalWebAPI.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
-        [Route("adddislike/{id}")]
-        [HttpGet]
-        public IActionResult AddDislike(int id)
+        [Route("adddislike")]
+        [HttpPost]
+        public IActionResult AddDislike([FromBody] int id)
         {
             try
             {

@@ -50,7 +50,7 @@
         <header>
             <h2 class="bg-secondary p-2 text-light">
                 <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg" alt="No image">
-                Zaiyka
+                Zaika
                 <a href="" class="btn btn-light" runat="server" id="myhome"><i class="fas fa-home"></i> Home</a>
                 <a href="#" class="btn btn-light" runat="server" id="myrecipes"><i class="fas fa-box-open"></i> My Recipes</a>
                 <a href="" class="btn btn-light" runat="server" id="add"><i class="fas fa-pizza-slice"></i> Add Recipes</a>
@@ -64,6 +64,8 @@
         
         <div class="container p-1">
             <h3 runat="server" id="title" style="color:blue;">Your uploaded recipes</h3>
+            <br />
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
             <asp:Panel ID="Panel1" runat="server">
                 <div class="modal fade" id="deleteModal" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">

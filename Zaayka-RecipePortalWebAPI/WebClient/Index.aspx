@@ -42,6 +42,8 @@
     <form id="form1" runat="server">
         <div class="container p-1">
             <h2>All Recipes</h2>
+            <br />
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
             <asp:Panel ID="Panel1" runat="server" Visible="true" >
 
             </asp:Panel>
