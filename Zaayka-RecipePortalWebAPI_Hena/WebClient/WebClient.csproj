@@ -71,16 +71,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GetRecipe.aspx" />
     <Content Include="home.aspx" />
+    <Content Include="Images\cb1-mos_052917052509.jpg" />
     <Content Include="Images\no-image.jpg" />
+    <Content Include="Images\oreo-cake.png" />
     <Content Include="Images\sitelogo.ico" />
     <Content Include="Images\sitelogo.jpg" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="AddRecipe.aspx" />
+    <Content Include="MyRecipes.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetRecipe.aspx.cs">
+      <DependentUpon>GetRecipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetRecipe.aspx.designer.cs">
+      <DependentUpon>GetRecipe.aspx</DependentUpon>
+    </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -102,8 +114,25 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AddRecipe.aspx.cs">
+      <DependentUpon>AddRecipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddRecipe.aspx.designer.cs">
+      <DependentUpon>AddRecipe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="MyRecipes.aspx.cs">
+      <DependentUpon>MyRecipes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyRecipes.aspx.designer.cs">
+      <DependentUpon>MyRecipes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipe_Category.cs" />
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

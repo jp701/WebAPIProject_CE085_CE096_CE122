@@ -11,9 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using WebClient.Data;
+using RecipePortalWebAPI.Data;
 
-namespace WebClient
+namespace RecipePortalWebAPI
 {
     public class Startup
     {
@@ -32,6 +32,7 @@ namespace WebClient
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<IAccountRepository,SQLAccountRepository>();
+            services.AddScoped<IRecipeRepository,SQLRecipeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

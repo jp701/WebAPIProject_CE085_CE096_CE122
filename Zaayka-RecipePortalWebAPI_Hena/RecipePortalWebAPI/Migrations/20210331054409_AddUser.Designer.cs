@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebClient.Data;
+using RecipePortalWebAPI.Data;
 
-namespace WebClient.Migrations
+namespace RecipePortalWebAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20210331054409_AddUser")]

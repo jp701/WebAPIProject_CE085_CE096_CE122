@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using WebClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,31 +10,42 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using WebClient.Models;
 
 namespace WebClient
 {
     public partial class home : System.Web.UI.Page
     {
-        static HttpClient client = new HttpClient();
-
-        protected void Page_Load(object sender, EventArgs e)
+         static HttpClient client = new HttpClient();
+         protected async void Page_Load(object sender, EventArgs e)
          {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            /*string userId = Request.QueryString["userid"];
+
+            string userId = Request.QueryString["userid"];
             if ( userId != null)
             {
                 myrecipes.HRef = "MyRecipes.aspx?userid=" + userId;
                 //myhome.HRef = "home.aspx?userid=" + userId;
                 add.HRef = "AddRecipe.aspx?userid=" + userId;
 
-                AccountServiceClient account_proxy = new AccountServiceClient();
-                Users current_user = account_proxy.GetUserDetail(Convert.ToInt32(Request.QueryString["userid"]));
-                title.InnerText = "Welcome " + current_user.name;
-                account_proxy.Close();
+                var response = await client.GetAsync("https://localhost:44366/api/account/getuserdetails/" + Convert.ToInt32(userId));
+                User current_user = null;
+                if(response.IsSuccessStatusCode)
+                {
+                    current_user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync());
+                }
+                title.InnerText = (current_user==null) ? "Welcome" : "Welcome " + current_user.name;
+                
+                var recipe_resp = await client.GetAsync("https://localhost:44366/api/recipe/getallrecipes/all/" + Convert.ToInt32(userId));
+                if (!recipe_resp.IsSuccessStatusCode)
+                {
+                    Label1.Text = "<h4>No Recipes available..!!</h4>";
+                    Label1.ForeColor = System.Drawing.Color.Red;
+                }
 
-                RecipeServiceClient proxy = new RecipeServiceClient("BasicHttpBinding_IRecipeService");
-                Recipe[] recipeList = proxy.GetAllRecipes(Convert.ToInt32(userId));
+                var data = await recipe_resp.Content.ReadAsStringAsync();
+                Recipe[] recipeList = JsonConvert.DeserializeObject<Recipe[]>(data);
                 int r = 0, c = 0;
                 HtmlGenericControl row = new HtmlGenericControl("div");
                 row.ID = "row" + (++r).ToString();
@@ -54,7 +64,7 @@ namespace WebClient
                         col.Visible = true;
 
                         HtmlGenericControl card = new HtmlGenericControl("div");
-                        card.ID = (recipeList[i].Id).ToString();
+                        card.ID = (recipeList[i].id).ToString();
                         card.Attributes.Add("runat", "server");
                         card.Attributes.Add("class", "card");
                         card.Attributes.Add("style", "width:300px");
@@ -62,13 +72,14 @@ namespace WebClient
 
                         HtmlGenericControl card_h = new HtmlGenericControl("div");      //Card-header
                         card_h.Attributes.Add("class", "card-header bg-light");
-                        card_h.InnerText = (recipeList[i].Title).ToString();
+                        card_h.InnerText = (recipeList[i].title).ToString();
                         card_h.Visible = true;
 
                         HtmlGenericControl card_b = new HtmlGenericControl("div");      //Card-body
                         card_b.Attributes.Add("class", "card-body");
                         System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
-                        img.ImageUrl = "~/Images/" + (recipeList[i].Image).ToString();
+
+                        img.ImageUrl = "~/Images/"+(recipeList[i].image);
                         img.Attributes.Add("class", "card-img-top imgThumbnail");
                         img.Attributes.Add("alt", "No Image Available");
                         card_b.Controls.Add(img);
@@ -76,9 +87,9 @@ namespace WebClient
 
                         Label likeLabel = new Label();
                         likeLabel.ForeColor = Color.FromArgb(50, 205, 50);
-                        likeLabel.Text = "Likes: " + recipeList[i].Likes.ToString() + "\t";
+                        likeLabel.Text = "Likes: " + recipeList[i].likes.ToString() + "\t";
                         Label dislikeLabel = new Label();
-                        dislikeLabel.Text = "Dislikes: " + recipeList[i].Dislikes.ToString();
+                        dislikeLabel.Text = "Dislikes: " + recipeList[i].dislikes.ToString();
                         dislikeLabel.ForeColor = Color.FromArgb(255, 0, 56);
                         card_b.Controls.Add(likeLabel);
                         card_b.Controls.Add(dislikeLabel);
@@ -94,17 +105,17 @@ namespace WebClient
                         buttonGroup.Attributes.Add("role", "group");
 
                         Button viewDetails = new Button();                                          //viewDetails button
-                        viewDetails.Attributes.Add("rid", (recipeList[i].Id).ToString());
+                        viewDetails.Attributes.Add("rid", (recipeList[i].id).ToString());
                         viewDetails.Text = "View Details";
                         viewDetails.Attributes.Add("class", "btn btn-outline-primary btn-sm");
-                        string rid = ((recipeList[i].Id).ToString());
+                        string rid = ((recipeList[i].id).ToString());
                         //viewDetails.Click += (s2, e2) => getRecipe(s2, e2, s );
                         //viewDetails.Click += delegate (object s1, EventArgs e1) { getRecipe(s1, e1, s ); };
                         viewDetails.Click += new EventHandler((s1, e1) => getRecipe(sender, e, rid, Request.QueryString["userid"]));
                         viewDetails.Visible = true;
 
                         Button like = new Button();                                          //likes button
-                        like.Attributes.Add("rid", (recipeList[i].Id).ToString());
+                        like.Attributes.Add("rid", (recipeList[i].id).ToString());
                         like.Attributes.Add("class", "btn btn-outline-success btn-sm");
                         //HtmlGenericControl itag = new HtmlGenericControl("i");
                         //itag.Attributes.Add("class","fas fa-thumbs-up");
@@ -118,7 +129,7 @@ namespace WebClient
                         like.Visible = true;
 
                         Button dislike = new Button();                                          //dislikes button
-                        dislike.Attributes.Add("rid", (recipeList[i].Id).ToString());
+                        dislike.Attributes.Add("rid", (recipeList[i].id).ToString());
                         dislike.Attributes.Add("class", "btn btn-outline-danger btn-sm");
 
                         //*HtmlGenericControl itag2 = new HtmlGenericControl("i");
@@ -158,50 +169,47 @@ namespace WebClient
                    if (i % 4 != 0)
                        Panel1.Controls.Add(row);
                }
-               proxy.Close();
            }
            else
            {
                Response.Redirect("Login.aspx");
-           }*/
-       }
-        /*protected void getRecipe(object sender, EventArgs e, string ID, string userid)
-        {
-            Response.Redirect("GetRecipe.aspx?rid=" + ID + "&b=h&userid=" + userid);
+           }
         }
-        protected void addLike(object sender, EventArgs e, string ID)
-        {
-            if (Request.QueryString["userid"] != null)
-            {
-                RecipeServiceClient proxy = new RecipeServiceClient("BasicHttpBinding_IRecipeService");
-                bool isadded = proxy.AddLike(Convert.ToInt32(ID));
 
-                Response.Redirect("home.aspx?userid=" + Request.QueryString["userid"]);
-                proxy.Close();
-            }
+        protected void getRecipe(object sender, EventArgs e, string ID, string userid)
+        {
+            Response.Redirect("GetRecipe.aspx?rid=" + ID + "&b=h&userid=" + userid, false);
+            return;
         }
-        protected void addDislike(object sender, EventArgs e, string ID)
+
+        protected async void addLike(object sender, EventArgs e, string ID)
         {
             if (Request.QueryString["userid"] != null)
             {
-                RecipeServiceClient proxy = new RecipeServiceClient("BasicHttpBinding_IRecipeService");
-                bool isadded = proxy.AddDislike(Convert.ToInt32(ID));
-                if (isadded == true)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('You dislike it!!!');", true);
-                }
+                var data = JsonConvert.SerializeObject(ID);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("https://localhost:44366/api/recipe/addlike",content);
                 Response.Redirect("home.aspx?userid=" + Request.QueryString["userid"]);
-                proxy.Close();
             }
-        }*/
+        }
+        protected async void addDislike(object sender, EventArgs e, string ID)
+        {
+            if (Request.QueryString["userid"] != null)
+            {
+                var data = JsonConvert.SerializeObject(ID);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("https://localhost:44366/api/recipe/adddislike",content);
+                Response.Redirect("home.aspx?userid=" + Request.QueryString["userid"]);
+            }
+        }
 
         protected async void ViewProfile_Click(object sender, EventArgs e)
         {
             if (Request.QueryString["userid"] != null)
             {
                 var id = Int32.Parse(Request.QueryString["userid"]);
-                var response = await client.GetAsync("https://localhost:44366/api/account/getuserdetails/"+id);
-                if(response.IsSuccessStatusCode)
+                var response = await client.GetAsync("https://localhost:44366/api/account/getuserdetails/" + id);
+                if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
                     User user = JsonConvert.DeserializeObject<User>(data);
@@ -229,7 +237,7 @@ namespace WebClient
                 update_user.password = password.Text;
 
                 var serializedObject = JsonConvert.SerializeObject(update_user);
-                var content = new StringContent(serializedObject,Encoding.UTF8,"application/json");
+                var content = new StringContent(serializedObject, Encoding.UTF8, "application/json");
                 var response = await client.PutAsync("https://localhost:44366/api/account/updateuserdetails", content);
 
                 if (response.IsSuccessStatusCode)
@@ -240,10 +248,6 @@ namespace WebClient
                     //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$(document).ready(function(){$('#myModal').modal('hide');});", true);
                     //upmodal.Update();
                 }
-                /*else
-                {
-                    Response.Redirect("Login.aspx");
-                }*/
             }
             else
             {

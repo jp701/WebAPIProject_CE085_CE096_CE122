@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="WebClient.Index" %>
+﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="WebClient.Index" %>
 
 <!DOCTYPE html>
 
@@ -34,7 +34,7 @@
     <header>
         <h2 class="bg-secondary p-2 text-light">
                 <img id="sitelogo" style="height:40px;width:40px" src="/Images/sitelogo.jpg" alt="No image">
-                Zaiyka
+                Zaika
                 <a href="Login.aspx" class="btn btn-light"><i class="fas fa-sign-in-alt"></i> Login</a>
                 <a href="Register.aspx" class="btn btn-light"><i class="fas fa-registered"></i> Register</a>
         </h2>
@@ -42,6 +42,8 @@
     <form id="form1" runat="server">
         <div class="container p-1">
             <h2>All Recipes</h2>
+            <br />
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
             <asp:Panel ID="Panel1" runat="server" Visible="true" >
 
             </asp:Panel>

@@ -63,10 +63,13 @@
         
         <div class="container p-1">
             <h3 style="color:blue;" runat="server" id="title"></h3>
+            <br />
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
             <asp:Panel ID="Panel1" runat="server">
             </asp:Panel>
         </div>
 
+        <!--Profile modal -->
         <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <asp:UpdatePanel ID="upmodal" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">

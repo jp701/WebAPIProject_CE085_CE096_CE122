@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using WebClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using WebClient.Models;
 
 namespace WebClient
 {
@@ -18,7 +18,7 @@ namespace WebClient
         protected void Page_Load(object sender, EventArgs e)
         {
             client.DefaultRequestHeaders.Accept.Clear();
-            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         protected async void Button1_Click(object sender, EventArgs e)

@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebClient
-{
-
-
-    public partial class home
-    {
-
+namespace WebClient {
+    
+    
+    public partial class home {
+        
         /// <summary>
         /// form1 control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-
+        
         /// <summary>
         /// myhome control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor myhome;
-
+        
         /// <summary>
         /// myrecipes control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor myrecipes;
-
+        
         /// <summary>
         /// add control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor add;
-
+        
         /// <summary>
         /// ViewProfile control.
         /// </summary>
@@ -58,7 +56,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor ViewProfile;
-
+        
         /// <summary>
         /// logout control.
         /// </summary>
@@ -67,7 +65,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor logout;
-
+        
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -76,7 +74,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-
+        
         /// <summary>
         /// title control.
         /// </summary>
@@ -85,7 +83,16 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl title;
-
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
         /// <summary>
         /// Panel1 control.
         /// </summary>
@@ -94,7 +101,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
-
+        
         /// <summary>
         /// upmodal control.
         /// </summary>
@@ -103,7 +110,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel upmodal;
-
+        
         /// <summary>
         /// UserProfile control.
         /// </summary>
@@ -112,7 +119,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label UserProfile;
-
+        
         /// <summary>
         /// email control.
         /// </summary>
@@ -121,7 +128,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label email;
-
+        
         /// <summary>
         /// emailid control.
         /// </summary>
@@ -130,7 +137,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox emailid;
-
+        
         /// <summary>
         /// name control.
         /// </summary>
@@ -139,7 +146,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label name;
-
+        
         /// <summary>
         /// uname control.
         /// </summary>
@@ -148,7 +155,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox uname;
-
+        
         /// <summary>
         /// pwd control.
         /// </summary>
@@ -157,7 +164,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label pwd;
-
+        
         /// <summary>
         /// password control.
         /// </summary>
@@ -166,7 +173,7 @@ namespace WebClient
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox password;
-
+        
         /// <summary>
         /// update control.
         /// </summary>

@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebClient.Data;
-using WebClient.Models;
+using RecipePortalWebAPI.Data;
+using RecipePortalWebAPI.Models;
 
-namespace WebClient.Controllers
+namespace RecipePortalWebAPI.Controllers
 {
     [Route("api/account")]
     [ApiController]
@@ -27,7 +26,7 @@ namespace WebClient.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             string msg=null;
             try
@@ -54,7 +53,7 @@ namespace WebClient.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var get_user = _accountRepository.Login(user);
             if(get_user == null)
@@ -71,7 +70,7 @@ namespace WebClient.Controllers
             var get_user = _accountRepository.GetUser(id);
             if (get_user == null)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Invalid Userid");
+                return StatusCode(StatusCodes.Status404NotFound, "User Not Found..!!");
             }
             return Ok(get_user);
         }
@@ -80,10 +79,10 @@ namespace WebClient.Controllers
         [HttpPut]
         public IActionResult UpdateUserDetails([FromBody] User user)
         {
-            /*if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
-            }*/
+                return BadRequest(ModelState);
+            }
             var response = _accountRepository.UpdateUser(user);
             if (response == "success")
             {
@@ -91,5 +90,7 @@ namespace WebClient.Controllers
             }
             return StatusCode(StatusCodes.Status500InternalServerError, response);
         }
+        
+        
     }
 }

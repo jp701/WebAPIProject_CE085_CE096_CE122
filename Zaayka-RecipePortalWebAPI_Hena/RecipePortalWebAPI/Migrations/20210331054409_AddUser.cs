@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebClient.Migrations
+namespace RecipePortalWebAPI.Migrations
 {
     public partial class AddUser : Migration
     {

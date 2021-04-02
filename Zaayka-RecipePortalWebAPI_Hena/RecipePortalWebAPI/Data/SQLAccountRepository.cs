@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WebClient.Models;
+using RecipePortalWebAPI.Models;
 
-namespace WebClient.Data
+namespace RecipePortalWebAPI.Data
 {
     public class SQLAccountRepository: IAccountRepository
     {
@@ -39,24 +39,24 @@ namespace WebClient.Data
 
         public User GetUser(int id)
         {
-            var user = context.Users.FirstOrDefault(u => u.id == id);
+            var user = context.Users.Where(u => u.id == id).FirstOrDefault();
             return user;
         }
 
         public string UpdateUser(User user)
         {
-            /*update_user.name = user.name;
-            update_user.password = user.password;
-            context.SaveChanges();*/
-
-            var modifed_user = context.Users.Attach(user);
-            modifed_user.State = Microsoft.EntityFrameworkCore.EntityState.Modified;                
-            context.SaveChanges();
-
-            //context.Entry(user).State = EntityState.Modified;
-            /*context.Entry(update_user).CurrentValues.SetValues(user);
-            context.SaveChanges();*/
-            return "success";
+            try
+            {
+                var modifed_user = context.Users.Attach(user);
+                modifed_user.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.SaveChanges();
+                return "success";
+            }
+            catch(DbUpdateConcurrencyException ex) { 
+                return ex.Message;
+            }
         }
+       
+        
     }
 }
