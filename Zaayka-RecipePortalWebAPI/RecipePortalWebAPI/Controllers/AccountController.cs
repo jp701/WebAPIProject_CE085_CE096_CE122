@@ -26,7 +26,7 @@ namespace RecipePortalWebAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             string msg=null;
             try
@@ -53,7 +53,7 @@ namespace RecipePortalWebAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
             var get_user = _accountRepository.Login(user);
             if(get_user == null)
@@ -63,5 +63,34 @@ namespace RecipePortalWebAPI.Controllers
             return Ok(get_user);
         }
 
+        [Route("getuserdetails/{id}")]
+        [HttpGet]
+        public IActionResult GetUserDetails(int id)
+        {
+            var get_user = _accountRepository.GetUser(id);
+            if (get_user == null)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, "User Not Found..!!");
+            }
+            return Ok(get_user);
+        }
+
+        [Route("updateuserdetails")]
+        [HttpPut]
+        public IActionResult UpdateUserDetails([FromBody] User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var response = _accountRepository.UpdateUser(user);
+            if (response == "success")
+            {
+                return Ok(StatusCodes.Status200OK);
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError, response);
+        }
+        
+        
     }
 }

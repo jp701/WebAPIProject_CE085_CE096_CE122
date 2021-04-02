@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
-using RecipePortalWebAPI.Models;
+using WebClient.Models;
 
 namespace WebClient
 {

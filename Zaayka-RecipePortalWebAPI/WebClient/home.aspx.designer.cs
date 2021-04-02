@@ -112,6 +112,24 @@ namespace WebClient {
         protected global::System.Web.UI.WebControls.Label UserProfile;
         
         /// <summary>
+        /// email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label email;
+        
+        /// <summary>
+        /// emailid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox emailid;
+        
+        /// <summary>
         /// name control.
         /// </summary>
         /// <remarks>
@@ -130,22 +148,22 @@ namespace WebClient {
         protected global::System.Web.UI.WebControls.TextBox uname;
         
         /// <summary>
-        /// email control.
+        /// pwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label email;
+        protected global::System.Web.UI.WebControls.Label pwd;
         
         /// <summary>
-        /// emailid control.
+        /// password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox emailid;
+        protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
         /// update control.

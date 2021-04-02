@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using RecipePortalWebAPI.Models;
 
 namespace RecipePortalWebAPI.Data
@@ -35,5 +36,27 @@ namespace RecipePortalWebAPI.Data
                 return "success";
             }
         }
+
+        public User GetUser(int id)
+        {
+            var user = context.Users.Where(u => u.id == id).FirstOrDefault();
+            return user;
+        }
+
+        public string UpdateUser(User user)
+        {
+            try
+            {
+                var modifed_user = context.Users.Attach(user);
+                modifed_user.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.SaveChanges();
+                return "success";
+            }
+            catch(DbUpdateConcurrencyException ex) { 
+                return ex.Message;
+            }
+        }
+       
+        
     }
 }

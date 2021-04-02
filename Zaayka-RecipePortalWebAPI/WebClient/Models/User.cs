@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using WebClient.Models;
 
-namespace RecipePortalWebAPI.Models
+namespace WebClient.Models
 {
     public class User
     {
@@ -20,5 +21,8 @@ namespace RecipePortalWebAPI.Models
 
         public string name { get; set; }
 
+        public ICollection<Recipe> Recipes { get; set; } //collection navigation property
+
+        public ICollection<Comment> Comments { get; set; } //collection navigation property
     }
 }

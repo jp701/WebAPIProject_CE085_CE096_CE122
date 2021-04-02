@@ -11,5 +11,9 @@ namespace RecipePortalWebAPI.Data
         string Register(User user);
 
         User Login(User user);
+
+        User GetUser(int id);
+
+        string UpdateUser(User user);
     }
 }
