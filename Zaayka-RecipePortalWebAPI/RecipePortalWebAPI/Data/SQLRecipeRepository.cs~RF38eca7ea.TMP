@@ -1,0 +1,38 @@
+﻿using RecipePortalWebAPI.Models;
+using RecipePortalWebAPI.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace RecipePortalWebAPI.Data
+{
+    public class SQLRecipeRepository : IRecipeRepository
+    {
+        private readonly AppDbContext context;
+
+        public SQLRecipeRepository(AppDbContext context)
+        {
+            this.context = context;
+        }
+        public string AddRecipe(Recipe recipe)
+        {
+            //throw new NotImplementedException();
+            context.Recipes.Add(recipe);
+            context.SaveChanges();
+            return "success";
+        }
+        /*public string UpdateRecipe(Recipe recipe)
+        {
+            var modifed_recipe = context.Recipes.Attach(recipe);
+            modifed_recipe.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return "success";
+        }*/
+        public Recipe GetRecipe(int id)
+        {
+            var fetch_recipe = context.Recipes.FirstOrDefault(r => r.id == id);
+            return fetch_recipe;
+        }
+    }
+}

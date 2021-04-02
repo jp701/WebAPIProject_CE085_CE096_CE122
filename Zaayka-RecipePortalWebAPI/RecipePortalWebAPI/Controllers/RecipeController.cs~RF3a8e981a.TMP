@@ -1,0 +1,119 @@
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using RecipePortalWebAPI.Data;
+using RecipePortalWebAPI.Models;
+using RecipePortalWebAPI.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace RecipePortalWebAPI.Controllers
+{
+    [Route("api/recipe")]
+    [ApiController]
+    public class RecipeController : ControllerBase
+    {
+        private readonly IRecipeRepository _recipeRepository;
+        private readonly IAccountRepository _accountRepository;
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public RecipeController(IRecipeRepository recipeRepository, IAccountRepository accountRepository, IHostingEnvironment hostingEnvironment)
+        {
+            this._recipeRepository = recipeRepository;
+            this._accountRepository = accountRepository;
+            this._hostingEnvironment = hostingEnvironment;
+        }
+        [Route("addrecipe")]
+        [HttpPost]
+        public IActionResult AddRecipe(Recipe newrecipe)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            /*string uniquefilename = null;
+            if(recipeViewModel.image!=null)
+            {
+                string uploadsfolder = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                uniquefilename = Guid.NewGuid().ToString() + "_" + recipeViewModel.image.FileName;
+                string filePath = Path.Combine(uploadsfolder, uniquefilename);
+                recipeViewModel.image.CopyTo(new FileStream(filePath, FileMode.Create));
+            }*/
+            /*Recipe newrecipe = new Recipe
+            {
+                title = recipeViewModel.title,
+                ingredients = recipeViewModel.ingredients,
+                method = recipeViewModel.method,
+                category = recipeViewModel.category,
+                image = uniquefilename,
+                otherdetails = recipeViewModel.otherdetails,
+                likes = 0,
+                dislikes = 0,
+                Date = DateTime.Now,
+                UserId = (int)recipeViewModel.UserId
+            };*/
+            string response = _recipeRepository.AddRecipe(newrecipe);
+            if (response == "success")
+                return Ok(response);
+            return StatusCode(StatusCodes.Status500InternalServerError, response);
+        }
+       
+        [Route("getallrecipes")]
+        [HttpGet]
+        public IActionResult GetAllRecipes()
+        {
+            try
+            {
+                var recipes = _recipeRepository.GetAllRecipes();
+                if (recipes != null)
+                {
+                    return Ok(recipes);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return StatusCode(StatusCodes.Status404NotFound, "Recipes Not Found..!!");
+        }
+        [Route("getallrecipes/{type}/{id}")]
+        [HttpGet]
+        public IActionResult GetAllRecipes(string type, int id)
+        {
+            var recipes = _recipeRepository.GetRecipes(type, id);
+            if (recipes != null)
+            {
+                return Ok(recipes);
+            }
+            return StatusCode(StatusCodes.Status404NotFound, "Recipes Not Found..!!");
+        }
+        [Route("getrecipe/{id}")]
+        [HttpGet]
+        public IActionResult GetRecipeById(int id)
+        {
+            try
+            {
+                var recipe = _recipeRepository.GetRecipeById(id);
+                if (recipe != null)
+                {
+                    //recipe.User = _accountRepository.GetUser(recipe.UserId);
+                    return Ok(recipe);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return StatusCode(StatusCodes.Status404NotFound, "Recipes Not Found..!!");
+        }
+        [Route("updaterecipedetails")]
+        [HttpPut]
+        public IActionResult UpdateRecipeDetails(Recipe changerecipe)
+        {
+            var response = _recipeRepository.UpdateRecipe(changerecipe);
+            return StatusCode(StatusCodes.Status500InternalServerError, response);
+        }
+    }
+}

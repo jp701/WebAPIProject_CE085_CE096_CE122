@@ -11826,11 +11826,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\B.TechCE\\SEM6\\SOC\\Project\\WebApiProject_CE085_CE096_CE122\\Zaayka-RecipePortalWebAPI\\RecipePortalWebAPI\\RecipePortalWebAPI.csproj",
+      "projectUniqueName": "F:\\B.TechCE\\SEM6\\SOC\\Project\\Zaayka-RecipePortalWebAPI\\RecipePortalWebAPI\\RecipePortalWebAPI.csproj",
       "projectName": "RecipePortalWebAPI",
-      "projectPath": "F:\\B.TechCE\\SEM6\\SOC\\Project\\WebApiProject_CE085_CE096_CE122\\Zaayka-RecipePortalWebAPI\\RecipePortalWebAPI\\RecipePortalWebAPI.csproj",
+      "projectPath": "F:\\B.TechCE\\SEM6\\SOC\\Project\\Zaayka-RecipePortalWebAPI\\RecipePortalWebAPI\\RecipePortalWebAPI.csproj",
       "packagesPath": "C:\\Users\\NIRALI P SHAH\\.nuget\\packages\\",
-      "outputPath": "F:\\B.TechCE\\SEM6\\SOC\\Project\\WebApiProject_CE085_CE096_CE122\\Zaayka-RecipePortalWebAPI\\RecipePortalWebAPI\\obj\\",
+      "outputPath": "F:\\B.TechCE\\SEM6\\SOC\\Project\\Zaayka-RecipePortalWebAPI\\RecipePortalWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NIRALI P SHAH\\AppData\\Roaming\\NuGet\\NuGet.Config",
