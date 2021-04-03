@@ -56,5 +56,52 @@ namespace RecipePortalWebAPI.Data
             context.SaveChanges();
             return "success";
         }
+        public bool AddLikeOrDislike(Recipe recipe)
+        {
+            //var recipe = context.Recipes.Where(r => r.id == id).FirstOrDefault();
+            if (recipe != null)
+            {
+                try
+                {
+                    var modifed_recipe = context.Recipes.Attach(recipe);
+                    modifed_recipe.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public string AddComment(Comment comment)
+        {
+            if (comment != null)
+            {
+                try
+                {
+                    context.Comments.Add(comment);
+                    context.SaveChanges();
+                    return "success";
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            else
+            {
+                return "Not added";
+            }
+        }
+
+        public IEnumerable<Comment> GetComments(int id)
+        {
+            return context.Comments.Where(c => c.RecipeId == id);
+        }
     }
 }

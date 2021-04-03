@@ -67,7 +67,7 @@ namespace RecipePortalWebAPI.Controllers
             try
             {
                 var recipes = _recipeRepository.GetAllRecipes();
-                if (recipes != null)
+                if (recipes != Enumerable.Empty<Recipe>())
                 {
                     return Ok(recipes);
                 }
@@ -134,6 +134,84 @@ namespace RecipePortalWebAPI.Controllers
                 return Ok(StatusCodes.Status200OK);
             }
             return StatusCode(StatusCodes.Status500InternalServerError, response);
+        }
+        [Route("addlike")]
+        [HttpPost]
+        public IActionResult AddLike([FromBody] int id)
+        {
+            try
+            {
+                var recipe = _recipeRepository.GetRecipeById(id);
+                recipe.likes += 1;
+                var state = _recipeRepository.AddLikeOrDislike(recipe);
+                if (state == true)
+                {
+                    Ok(state);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        [Route("adddislike")]
+        [HttpPost]
+        public IActionResult AddDislike([FromBody] int id)
+        {
+            try
+            {
+                var recipe = _recipeRepository.GetRecipeById(id);
+                recipe.dislikes += 1;
+                var state = _recipeRepository.AddLikeOrDislike(recipe);
+                if (state == true)
+                {
+                    Ok(state);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+        [Route("addcomment")]
+        [HttpPost]
+        public IActionResult AddComment(Comment comment)
+        {
+            try
+            {
+                var result = _recipeRepository.AddComment(comment);
+                if (result == "success")
+                {
+                    return Ok(StatusCodes.Status200OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        [Route("viewcomment/{id}")]
+        [HttpGet]
+        public IActionResult ViewComment(int id)
+        {
+            try
+            {
+                var comments = _recipeRepository.GetComments(id);
+                if (comments != null)
+                {
+                    return Ok(comments);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return StatusCode(StatusCodes.Status404NotFound, "No comments yet..!!");
         }
     }
 }

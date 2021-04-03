@@ -21,6 +21,7 @@ namespace WebClient
          {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
             string userId = Request.QueryString["userid"];
             if (userId != null)
             {
@@ -38,7 +39,10 @@ namespace WebClient
 
                 var recipe_resp = await client.GetAsync("https://localhost:44366/api/recipe/getallrecipes/all/" + Convert.ToInt32(userId));
                 if (!recipe_resp.IsSuccessStatusCode)
-                    Response.Write("<h4>No Recipes available..!!</h4>");
+                {
+                    Label1.Text = "<h4>No Recipes available..!!</h4>";
+                    Label1.ForeColor = System.Drawing.Color.Red;
+                }
 
                 var data = await recipe_resp.Content.ReadAsStringAsync();
                 Recipe[] recipeList = JsonConvert.DeserializeObject<Recipe[]>(data);
@@ -176,29 +180,24 @@ namespace WebClient
             Response.Redirect("GetRecipe.aspx?rid=" + ID + "&b=h&userid=" + userid, false);
             return;
         }
-        protected void addLike(object sender, EventArgs e, string ID)
+        protected async void addLike(object sender, EventArgs e, string ID)
         {
             if (Request.QueryString["userid"] != null)
             {
-                /*RecipeServiceClient proxy = new RecipeServiceClient("BasicHttpBinding_IRecipeService");
-                bool isadded = proxy.AddLike(Convert.ToInt32(ID));
-                
+                var data = JsonConvert.SerializeObject(ID);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("https://localhost:44366/api/recipe/addlike", content);
                 Response.Redirect("home.aspx?userid=" + Request.QueryString["userid"]);
-                proxy.Close();*/
             }
         }
-        protected void addDislike(object sender, EventArgs e, string ID)
+        protected async void addDislike(object sender, EventArgs e, string ID)
         {
             if (Request.QueryString["userid"] != null)
             {
-                /*RecipeServiceClient proxy = new RecipeServiceClient("BasicHttpBinding_IRecipeService");
-                bool isadded = proxy.AddDislike(Convert.ToInt32(ID));
-                if (isadded == true)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('You dislike it!!!');", true);
-                }
+                var data = JsonConvert.SerializeObject(ID);
+                var content = new StringContent(data, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("https://localhost:44366/api/recipe/adddislike", content);
                 Response.Redirect("home.aspx?userid=" + Request.QueryString["userid"]);
-                proxy.Close();*/
             }
         }
 

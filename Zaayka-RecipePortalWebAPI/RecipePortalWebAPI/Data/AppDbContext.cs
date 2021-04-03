@@ -26,8 +26,24 @@ namespace RecipePortalWebAPI.Data
                 .WithMany(u => u.Recipes)
                 .HasForeignKey(c => c.UserId)
                 .HasPrincipalKey(c => c.id);
+
+            modelbuilder.Entity<Comment>()
+                .HasOne<User>(c => c.User)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId)
+                .HasPrincipalKey(c => c.id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelbuilder.Entity<Comment>()
+                .HasOne<Recipe>(c => c.Recipe)
+                .WithMany(r => r.Comments)
+                .HasForeignKey(c => c.RecipeId)
+                .HasPrincipalKey(c => c.id)
+                .OnDelete(DeleteBehavior.Cascade);
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

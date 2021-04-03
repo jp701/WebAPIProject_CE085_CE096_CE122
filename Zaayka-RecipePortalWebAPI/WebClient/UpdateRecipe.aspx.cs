@@ -75,7 +75,7 @@ namespace WebClient
             updaterecipe.category = category.SelectedItem.Text;
             updaterecipe.otherdetails = other.Value;
             updaterecipe.UserId = Int32.Parse(Request.QueryString["userid"]);
-            updaterecipe.image = photo.Src.Remove(0, 7);
+            updaterecipe.image = photo.Src.Remove(0, 8);
             var serializedObject = JsonConvert.SerializeObject(updaterecipe);
             var content = new StringContent(serializedObject, Encoding.UTF8, "application/json");
             var response = await client.PutAsync("https://localhost:44366/api/recipe/updaterecipedetails", content);

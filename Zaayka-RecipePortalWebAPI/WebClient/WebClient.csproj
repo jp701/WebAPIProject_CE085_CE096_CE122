@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddRecipe.aspx" />
+    <Content Include="GetRecipe.aspx" />
     <Content Include="home.aspx" />
     <Content Include="Images\no-image.jpg" />
     <Content Include="Images\sitelogo.ico" />
@@ -90,6 +91,13 @@
     </Compile>
     <Compile Include="AddRecipe.aspx.designer.cs">
       <DependentUpon>AddRecipe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetRecipe.aspx.cs">
+      <DependentUpon>GetRecipe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GetRecipe.aspx.designer.cs">
+      <DependentUpon>GetRecipe.aspx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
@@ -112,6 +120,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MyRecipes.aspx.cs">

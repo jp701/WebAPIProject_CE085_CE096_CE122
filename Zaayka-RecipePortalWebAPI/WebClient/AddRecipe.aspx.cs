@@ -51,7 +51,7 @@ namespace WebClient
                 newrecipe.method= method.Value;
                 newrecipe.category= category.SelectedItem.Text;
                 newrecipe.otherdetails= other.Value;
-                newrecipe.image = null;
+                newrecipe.image = "no - image.jpg";
                 newrecipe.UserId= Convert.ToInt32(userId);
                 newrecipe.Date = DateTime.Today;
                 if(FileUpload1.HasFile)

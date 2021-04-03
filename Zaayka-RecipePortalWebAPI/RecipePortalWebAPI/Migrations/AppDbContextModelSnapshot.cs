@@ -19,6 +19,29 @@ namespace RecipePortalWebAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("RecipePortalWebAPI.Models.Comment", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RecipeId");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("commentText");
+
+                    b.Property<DateTime>("datetime");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("RecipePortalWebAPI.Models.Recipe", b =>
                 {
                     b.Property<int>("id")
@@ -69,6 +92,19 @@ namespace RecipePortalWebAPI.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RecipePortalWebAPI.Models.Comment", b =>
+                {
+                    b.HasOne("RecipePortalWebAPI.Models.Recipe", "Recipe")
+                        .WithMany("Comments")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RecipePortalWebAPI.Models.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("RecipePortalWebAPI.Models.Recipe", b =>

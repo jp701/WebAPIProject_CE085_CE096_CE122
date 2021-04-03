@@ -34,6 +34,6 @@ namespace RecipePortalWebAPI.Models
 
         public User User { get; set; } //ref navigation property
         public int UserId { get; set; } //foreign key
-
+        public ICollection<Comment> Comments { get; set; }
     }
 }

@@ -15,5 +15,9 @@ namespace RecipePortalWebAPI.Data
         IEnumerable<Recipe> GetAllRecipes();
         IEnumerable<Recipe> GetRecipes(string type, int id);
         string DeleteRecipe(Recipe recipe);
+        bool AddLikeOrDislike(Recipe recipe);
+        string AddComment(Comment comment);
+
+        IEnumerable<Comment> GetComments(int id);
     }
 }

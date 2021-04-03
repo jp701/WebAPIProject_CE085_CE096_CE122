@@ -21,5 +21,6 @@ namespace RecipePortalWebAPI.Models
         public string name { get; set; }
 
         public ICollection<Recipe> Recipes { get; set; }
+        public ICollection<Comment> Comments { get; set; } //collection navigation property
     }
 }
